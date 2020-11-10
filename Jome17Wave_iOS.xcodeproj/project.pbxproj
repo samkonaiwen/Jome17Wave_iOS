@@ -8,18 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		2208B70B2551818200D4A9C1 /* MapAllTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2208B70A2551818200D4A9C1 /* MapAllTableViewController.swift */; };
-		2208B70F255181A600D4A9C1 /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2208B70E255181A600D4A9C1 /* MapTableViewCell.swift */; };
 		2208B7132551827A00D4A9C1 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2208B7122551827A00D4A9C1 /* Common.swift */; };
 		2208B7182551869400D4A9C1 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2208B7172551869400D4A9C1 /* Map.swift */; };
-		220CD91C2552470D00C325F5 /* MapInsertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220CD91B2552470D00C325F5 /* MapInsertViewController.swift */; };
 		220CD9372552AEF100C325F5 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 220CD9362552AEF100C325F5 /* Map.storyboard */; };
 		220CD93C2552AFC200C325F5 /* Report.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 220CD93B2552AFC200C325F5 /* Report.storyboard */; };
 		220CD93F2552AFEB00C325F5 /* Admin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 220CD93E2552AFEB00C325F5 /* Admin.storyboard */; };
 		220CD9482552B62E00C325F5 /* MapDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220CD9472552B62E00C325F5 /* MapDetailTableViewController.swift */; };
+		2224A2CD2558F89A00084E63 /* MapUpdateTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2224A2CC2558F89A00084E63 /* MapUpdateTableViewController.swift */; };
 		224E870225539B710035CF61 /* Group.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 224E870125539B710035CF61 /* Group.storyboard */; };
 		224E87072553BB710035CF61 /* MapListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224E87052553BB710035CF61 /* MapListTableViewCell.swift */; };
 		224E87082553BB710035CF61 /* MapListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 224E87062553BB710035CF61 /* MapListTableViewCell.xib */; };
 		224E870C2553E3AC0035CF61 /* MapNorthTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224E870B2553E3AC0035CF61 /* MapNorthTableViewController.swift */; };
+		224E87142554042D0035CF61 /* MapInsertTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224E87132554042D0035CF61 /* MapInsertTableViewController.swift */; };
 		227D2825254BBFAC00D24B8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227D2824254BBFAC00D24B8E /* AppDelegate.swift */; };
 		227D2827254BBFAC00D24B8E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227D2826254BBFAC00D24B8E /* SceneDelegate.swift */; };
 		227D2829254BBFAC00D24B8E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227D2828254BBFAC00D24B8E /* ViewController.swift */; };
@@ -30,18 +30,18 @@
 
 /* Begin PBXFileReference section */
 		2208B70A2551818200D4A9C1 /* MapAllTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAllTableViewController.swift; sourceTree = "<group>"; };
-		2208B70E255181A600D4A9C1 /* MapTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTableViewCell.swift; sourceTree = "<group>"; };
 		2208B7122551827A00D4A9C1 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		2208B7172551869400D4A9C1 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
-		220CD91B2552470D00C325F5 /* MapInsertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapInsertViewController.swift; sourceTree = "<group>"; };
 		220CD9362552AEF100C325F5 /* Map.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		220CD93B2552AFC200C325F5 /* Report.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Report.storyboard; sourceTree = "<group>"; };
 		220CD93E2552AFEB00C325F5 /* Admin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Admin.storyboard; sourceTree = "<group>"; };
 		220CD9472552B62E00C325F5 /* MapDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetailTableViewController.swift; sourceTree = "<group>"; };
+		2224A2CC2558F89A00084E63 /* MapUpdateTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapUpdateTableViewController.swift; sourceTree = "<group>"; };
 		224E870125539B710035CF61 /* Group.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Group.storyboard; sourceTree = "<group>"; };
 		224E87052553BB710035CF61 /* MapListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapListTableViewCell.swift; sourceTree = "<group>"; };
 		224E87062553BB710035CF61 /* MapListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapListTableViewCell.xib; sourceTree = "<group>"; };
 		224E870B2553E3AC0035CF61 /* MapNorthTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapNorthTableViewController.swift; sourceTree = "<group>"; };
+		224E87132554042D0035CF61 /* MapInsertTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapInsertTableViewController.swift; sourceTree = "<group>"; };
 		227D2821254BBFAC00D24B8E /* Jome17Wave_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jome17Wave_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		227D2824254BBFAC00D24B8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		227D2826254BBFAC00D24B8E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,8 +90,9 @@
 			children = (
 				2208B70A2551818200D4A9C1 /* MapAllTableViewController.swift */,
 				224E870B2553E3AC0035CF61 /* MapNorthTableViewController.swift */,
-				220CD91B2552470D00C325F5 /* MapInsertViewController.swift */,
 				220CD9472552B62E00C325F5 /* MapDetailTableViewController.swift */,
+				224E87132554042D0035CF61 /* MapInsertTableViewController.swift */,
+				2224A2CC2558F89A00084E63 /* MapUpdateTableViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -99,7 +100,6 @@
 		2208B70D2551819700D4A9C1 /* VIew */ = {
 			isa = PBXGroup;
 			children = (
-				2208B70E255181A600D4A9C1 /* MapTableViewCell.swift */,
 				224E87052553BB710035CF61 /* MapListTableViewCell.swift */,
 				224E87062553BB710035CF61 /* MapListTableViewCell.xib */,
 			);
@@ -230,13 +230,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				2208B70B2551818200D4A9C1 /* MapAllTableViewController.swift in Sources */,
-				2208B70F255181A600D4A9C1 /* MapTableViewCell.swift in Sources */,
-				220CD91C2552470D00C325F5 /* MapInsertViewController.swift in Sources */,
+				224E87142554042D0035CF61 /* MapInsertTableViewController.swift in Sources */,
 				227D2829254BBFAC00D24B8E /* ViewController.swift in Sources */,
 				2208B7182551869400D4A9C1 /* Map.swift in Sources */,
 				224E870C2553E3AC0035CF61 /* MapNorthTableViewController.swift in Sources */,
 				227D2825254BBFAC00D24B8E /* AppDelegate.swift in Sources */,
 				2208B7132551827A00D4A9C1 /* Common.swift in Sources */,
+				2224A2CD2558F89A00084E63 /* MapUpdateTableViewController.swift in Sources */,
 				227D2827254BBFAC00D24B8E /* SceneDelegate.swift in Sources */,
 				224E87072553BB710035CF61 /* MapListTableViewCell.swift in Sources */,
 				220CD9482552B62E00C325F5 /* MapDetailTableViewController.swift in Sources */,

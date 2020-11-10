@@ -35,6 +35,13 @@ class MapDetailTableViewController: UITableViewController {
         lbDirection.text = map.direction
         
         showImage()
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                tableView.deselectRow(at: selectedIndexPath, animated: animated)
+            }
     }
     
     func showImage() {

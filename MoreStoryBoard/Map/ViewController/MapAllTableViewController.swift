@@ -7,13 +7,17 @@
 
 import UIKit
 
-class MapAllTableViewController: UITableViewController {
+class MapAllTableViewController: UITableViewController, UISearchBarDelegate {
+    
+    @IBOutlet var mapTableView: UITableView!
+    
     var maps = [Map]()
     let url_server = URL(string: common_url + "SURF_POINTServlet")
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(UINib(nibName: "MapListTableViewCell", bundle: nil), forCellReuseIdentifier: "MapListTableViewCell")
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
     func tableViewAddRefreshControl() {
@@ -25,6 +29,7 @@ class MapAllTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         showAllMaps()
+        setupSearchBar()
     }
     
     @objc func showAllMaps() {
@@ -94,7 +99,91 @@ class MapAllTableViewController: UITableViewController {
         return cell
     }
     
-
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let edit = UIContextualAction(style: .normal, title: "Edit") { (action, view, bool) in
+            let mapUpdateVC = self.storyboard?.instantiateViewController(withIdentifier: "MapUpdateTableViewController") as! MapUpdateTableViewController
+            let map = self.maps[indexPath.row]
+            mapUpdateVC.map = map
+            self.navigationController?.pushViewController(mapUpdateVC, animated: true)
+        }
+        edit.backgroundColor = UIColor.lightGray
+        
+        let delete = UIContextualAction(style: .normal, title: "Delete") { (action, view, bool) in
+            var requestParam = [String: Any]()
+            requestParam["action"] = "mapDelete"
+            requestParam["mapId"] = self.maps[indexPath.row].id
+            executeTask(self.url_server!, requestParam) { (data, response, error) in
+                if error == nil {
+                    if data != nil {
+                        if let result = String(data: data!, encoding: .utf8) {
+                            if let count = Int(result) {
+                                if count != 0 {
+                                    self.maps.remove(at: indexPath.row)
+                                    DispatchQueue.main.async {
+                                        tableView.deleteRows(at: [indexPath], with: .fade)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    print(error!.localizedDescription)
+                }
+            }
+        }
+        delete.backgroundColor = UIColor.red
+        
+        let swipeActions = UISwipeActionsConfiguration(actions: [delete, edit])
+        // true代表滑到底視同觸發第一個動作；false代表滑到底也不會觸發任何動作
+        swipeActions.performsFirstActionWithFullSwipe = false
+        return swipeActions
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectsdMap = maps[indexPath.row]
+        if let viewController = storyboard?.instantiateViewController(identifier: "MapDetailTableViewController") as? MapDetailTableViewController {
+            viewController.map = selectsdMap
+            navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
+    
+    let searchBar = UISearchBar()
+    
+    func setupSearchBar() {
+        searchBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50)
+        searchBar.showsCancelButton = true
+        searchBar.delegate = self
+        
+        mapTableView.delegate = self
+        mapTableView.dataSource = self
+        
+        searchBar.searchTextField.clearButtonMode = .whileEditing
+        searchBar.placeholder = "收尋浪點"
+        self.mapTableView.tableHeaderView = searchBar
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        let text = searchBar.text ?? ""
+        if text == "" {
+            showAllMaps()
+        } else {
+            maps = maps.filter({ (maps) -> Bool in
+                return maps.name.uppercased().contains(searchText.uppercased())
+            })
+        }
+        mapTableView.reloadData()
+    }
+    
+    // 關閉虛擬鍵盤
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    // 按取消按鈕，關閉虛擬鍵盤
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -133,12 +222,12 @@ class MapAllTableViewController: UITableViewController {
     
     // MARK: - Navigation
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "mapDetail" {
-            let indexPath = self.tableView.indexPathForSelectedRow!
-            let map = maps[indexPath.row]
-            let controller = segue.destination as! MapDetailTableViewController
-            controller.map = map
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "mapDetail" {
+//            let indexPath = self.tableView.indexPathForSelectedRow!
+//            let map = maps[indexPath.row]
+//            let controller = segue.destination as! MapDetailTableViewController
+//            controller.map = map
+//        }
+//    }
 }
