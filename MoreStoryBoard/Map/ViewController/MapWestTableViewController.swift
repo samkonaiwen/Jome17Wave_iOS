@@ -1,17 +1,17 @@
 //
-//  MapNorthTableViewController.swift
+//  MapWestTableViewController.swift
 //  Jome17Wave_iOS
 //
-//  Created by SAM on 2020/11/5.
+//  Created by SAM on 2020/11/11.
 //
 
 import UIKit
 
-class MapNorthTableViewController: UITableViewController {
+class MapWestTableViewController: UITableViewController {
     
-    var northSurf = [Map]()
+    var westSurf = [Map]()
     let url_server = URL(string: common_url + "SURF_POINTServlet")
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(UINib(nibName: "MapListTableViewCell", bundle: nil), forCellReuseIdentifier: "MapListTableViewCell")
@@ -20,26 +20,25 @@ class MapNorthTableViewController: UITableViewController {
     func tableViewAddRefreshControl() {
         let refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refreshControl.addTarget(self, action: #selector(showNorthSurf), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(showWestSurf), for: .valueChanged)
         self.tableView.refreshControl = refreshControl
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
-        showNorthSurf()
+        showWestSurf()
     }
     
-    @objc func showNorthSurf() {
+    @objc func showWestSurf() {
         let requestParam = ["action" : "getAll"]
         executeTask(url_server!, requestParam) { (data, response, error) in
             if error == nil {
                 if data != nil {
                     if let result = try? JSONDecoder().decode([Map].self, from: data!) {
-                        self.northSurf = result
+                        self.westSurf = result
                         
-                        self.northSurf = result.filter({ (map) -> Bool in
-                            map.side?.first == "北"
+                        self.westSurf = result.filter({ (map) -> Bool in
+                            map.side?.first == "西"
                         })
-                        
                         DispatchQueue.main.async {
                             if let control = self.tableView.refreshControl {
                                 if control.isRefreshing {
@@ -56,24 +55,25 @@ class MapNorthTableViewController: UITableViewController {
         }
     }
 
-    
+    // MARK: - Table view data source
+
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return northSurf.count
+        return westSurf.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellId = "MapListTableViewCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! MapListTableViewCell
-        let surfPoint = northSurf[indexPath.row]
+        let surfPoint = westSurf[indexPath.row]
         
         var requestParam = [String: Any]()
         requestParam["action"] = "getImage"
         requestParam["SURF_POINT_ID"] = surfPoint.id
         
-        requestParam["imageSize"] = cell.frame.width
+        requestParam["imageSize"] = view.frame.width
         var image: UIImage?
         executeTask(url_server!, requestParam) { (data, response, error) in
             if error == nil {
@@ -83,24 +83,26 @@ class MapNorthTableViewController: UITableViewController {
                 if image == nil {
                     image = UIImage(named: "noImage.jpg")
                 }
-                DispatchQueue.main.async {cell.ivMap.image = image}
+                DispatchQueue.main.async {
+                    cell.ivMap.image = image
+                }
             } else {
                 print(error!.localizedDescription)
             }
         }
-        
         cell.lbName.text = surfPoint.name
         cell.lbSide.text = surfPoint.side
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectsdMap = northSurf[indexPath.row]
+        let selectsdMap = westSurf[indexPath.row]
         if let viewController = storyboard?.instantiateViewController(identifier: "MapDetailTableViewController") as? MapDetailTableViewController {
             viewController.map = selectsdMap
             navigationController?.pushViewController(viewController, animated: true)
         }
     }
+    
 
     /*
     // Override to support conditional editing of the table view.

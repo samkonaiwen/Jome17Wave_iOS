@@ -17,7 +17,6 @@ class MapAllTableViewController: UITableViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(UINib(nibName: "MapListTableViewCell", bundle: nil), forCellReuseIdentifier: "MapListTableViewCell")
-        tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
     func tableViewAddRefreshControl() {
@@ -29,7 +28,7 @@ class MapAllTableViewController: UITableViewController, UISearchBarDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         showAllMaps()
-        setupSearchBar()
+//        setupSearchBar()
     }
     
     @objc func showAllMaps() {
@@ -39,10 +38,13 @@ class MapAllTableViewController: UITableViewController, UISearchBarDelegate {
         executeTask(url_server!, requestParam) { (data, response, error) in
             if error == nil {
                 if data != nil {
-                    print("input: \(String(data: data!, encoding: .utf8)!)")
-                    
                     if let result = try? JSONDecoder().decode([Map].self, from: data!) {
                         self.maps = result
+                        
+//                        self.maps = result.filter({ (map) -> Bool in
+//                            map.side?.first == "北"
+//                        })
+                        
                         DispatchQueue.main.async {
                             if let control = self.tableView.refreshControl {
                                 if control.isRefreshing {
@@ -60,7 +62,6 @@ class MapAllTableViewController: UITableViewController, UISearchBarDelegate {
     }
 
     // MARK: - Table view data source
-
     
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -147,42 +148,42 @@ class MapAllTableViewController: UITableViewController, UISearchBarDelegate {
         }
     }
     
-    let searchBar = UISearchBar()
-    
-    func setupSearchBar() {
-        searchBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50)
-        searchBar.showsCancelButton = true
-        searchBar.delegate = self
-        
-        mapTableView.delegate = self
-        mapTableView.dataSource = self
-        
-        searchBar.searchTextField.clearButtonMode = .whileEditing
-        searchBar.placeholder = "收尋浪點"
-        self.mapTableView.tableHeaderView = searchBar
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        let text = searchBar.text ?? ""
-        if text == "" {
-            showAllMaps()
-        } else {
-            maps = maps.filter({ (maps) -> Bool in
-                return maps.name.uppercased().contains(searchText.uppercased())
-            })
-        }
-        mapTableView.reloadData()
-    }
-    
+//    let searchBar = UISearchBar()
+//
+//    func setupSearchBar() {
+//        searchBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50)
+//        searchBar.showsCancelButton = true
+//        searchBar.delegate = self
+//
+//        mapTableView.delegate = self
+//        mapTableView.dataSource = self
+//
+//        searchBar.searchTextField.clearButtonMode = .whileEditing
+//        searchBar.placeholder = "收尋浪點"
+//        self.mapTableView.tableHeaderView = searchBar
+//    }
+//
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        let text = searchBar.text ?? ""
+//        if text == "" {
+//            showAllMaps()
+//        } else {
+//            maps = maps.filter({ (maps) -> Bool in
+//                return maps.name.uppercased().contains(searchText.uppercased())
+//            })
+//        }
+//        mapTableView.reloadData()
+//    }
+
     // 關閉虛擬鍵盤
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-    }
-    
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        searchBar.resignFirstResponder()
+//    }
+
     // 按取消按鈕，關閉虛擬鍵盤
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        view.endEditing(true)
-    }
+//    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+//        view.endEditing(true)
+//    }
     
     /*
     // Override to support conditional editing of the table view.
